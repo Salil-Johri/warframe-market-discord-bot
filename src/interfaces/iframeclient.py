@@ -1,4 +1,4 @@
 class IFrameClient():
     def get_items(self) -> str:
-        """ Execute a simple get request """
+        """ Gets the item information, such as price and user information """
         pass

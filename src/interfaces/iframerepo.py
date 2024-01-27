@@ -1,6 +1,4 @@
-from apiclient import APIClient
-
 class IFrameRepo():
     def get_item_price(self, item_name) -> str:
-        """ Gets the specified item price, or nothing if the item doesn't exist/is spelled wrong """
+        """ Gets the cheapest item price with the criteria of whether or not the user is online """
         pass
