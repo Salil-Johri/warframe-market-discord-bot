@@ -1,15 +1,14 @@
-from apiclient import APIClient
-
-class FrameClientImpl(APIClient):
-    def __int__(self, url):
+import requests
+import json
+from interfaces.iframeclient import IFrameClient
+class FrameHttpClientImpl(IFrameClient):
+    def __init__(self, getter, url):
         self.url = url
+        self.getter = getter
     
-    def get_items(self, item, extension) -> str:
+    def get_items(self, item):
         data_to_get = item.lower().replace(" ", "_")
-        url_get = self.url + data_to_get + "/orders"
-        return self.get(url_get)
-
-
-client = FrameClientImpl("https://api.warframe.market/v1")
-
-client.get_items("Mirage Prime Systems", "/items")
+        url_get = self.url + "/items/" + data_to_get + "/orders"
+        print(url_get)
+        r = self.getter.get(url_get)
+        return json.loads(r.text)

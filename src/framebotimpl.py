@@ -1,9 +1,8 @@
 import interfaces
 
 class FrameBotImpl(IFrameRepo):
-    
-    def __init__(self, http_client, url):
-        self.http_client = http_client
+    def __init__(self, frame_client, url):
+        self.frame_client = frame_client
     
     def get_item_price(self, item_name) -> str:
 
