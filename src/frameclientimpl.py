@@ -1,4 +1,3 @@
-import requests
 import json
 from interfaces.iframeclient import IFrameClient
 class FrameHttpClientImpl(IFrameClient):
@@ -9,6 +8,5 @@ class FrameHttpClientImpl(IFrameClient):
     def get_items(self, item):
         data_to_get = item.lower().replace(" ", "_")
         url_get = self.url + "/items/" + data_to_get + "/orders"
-        print(url_get)
         r = self.getter.get(url_get)
-        return json.loads(r.text)
+        return json.loads(r.text)['payload']
