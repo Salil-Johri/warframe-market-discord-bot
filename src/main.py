@@ -33,9 +33,12 @@ async def _getprice(ctx, *args):
     print("Getting price...")
     item_string = " ".join(args)
     price = frame_bot.get_item_price(item_string)
-    command_result = "The lowest price of " + item_string + " is " + str(price) + " platinum"
-    print(command_result)
-    await ctx.send(command_result, ephemeral=True)
+    if price < 0:
+        command_result = "item " + item_string + " was not found on warframe market"
+        await ctx.send(command_result)
+    else:
+        command_result = "The lowest price of " + item_string + " is " + str(price) + " platinum"
+        await ctx.send(command_result, ephemeral=True)
 
 @client.event
 async def on_message(message):

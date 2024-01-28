@@ -7,6 +7,8 @@ class FrameBotImpl(IFrameRepo):
     
     def get_item_price(self, item_name) -> str:
         json_price = self.frame_client.get_items(item_name)
+        if json_price == "-1":
+            return -1
         print("Items retrieved. Sorting prices")
         # need to sort based on price
         price_array = []
