@@ -26,20 +26,23 @@ async def on_ready():
 
 @client.command(name="price")
 async def _getprice(ctx, *args):
+    if(len(args) == 0):
+        await ctx.send("No arguments supplied")
+        return
+    
     print("Getting price...")
     item_string = " ".join(args)
-    print(args)
     price = frame_bot.get_item_price(item_string)
-    command_result = "The price of " + item_string + " is " + str(price)
+    command_result = "The lowest price of " + item_string + " is " + str(price) + " platinum"
     print(command_result)
-    ctx.send(command_result)
+    await ctx.send(command_result, ephemeral=True)
 
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
     if(str(message.author) == 'doignuts'):
-        await message.channel.send('kiss my ass doignuts')
+        await message.channel.send('kiss my ass DoigNuts')
         return
     await client.process_commands(message)
 # Run
